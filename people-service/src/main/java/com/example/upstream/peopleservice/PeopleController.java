@@ -27,9 +27,14 @@ public class PeopleController {
     Resource resource = resourceLoader.getResource("classpath:people.csv");
     try (CSVReader csvReader = new CSVReader(new FileReader(resource.getFile().getPath()))) {
       return ResponseEntity.ok().body(getPeopleFromCSV(csvReader));
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+    } catch (Exception ex) {
+      return ResponseEntity.badRequest().build();
     }
+  }
+
+  @GetMapping("/exception")
+  public ResponseEntity<Void> getExceptionRespone() {
+    return ResponseEntity.badRequest().build();
   }
 
   private List<People> getPeopleFromCSV(CSVReader csvReader)
@@ -46,7 +51,6 @@ public class PeopleController {
   }
 
   private People getDoctor(String[] strings) {
-    throw new RuntimeException();
-//    return new People(Long.valueOf(strings[0]), strings[1], strings[2], strings[3], strings[4]);
+    return new People(Long.valueOf(strings[0]), strings[1], strings[2], strings[3], strings[4]);
   }
 }
