@@ -46,7 +46,7 @@ public class PeopleController {
   }
 
   private People getDoctor(String[] strings) {
-//    throw new RuntimeException();
-    return new People(Long.valueOf(strings[0]), strings[1], strings[2], strings[3], strings[4]);
+    throw new RuntimeException();
+//    return new People(Long.valueOf(strings[0]), strings[1], strings[2], strings[3], strings[4]);
   }
 }
